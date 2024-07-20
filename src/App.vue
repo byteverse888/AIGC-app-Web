@@ -1,85 +1,167 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <div class="app">
+    <nav class="left-nav">
+      <div class="menu-header">
+        <i class="icon iconfont icon-wutouxiang"></i>
+      </div>
+      <div class="menu-content">
+        <router-link to="/chat">
+          <div class="item-style">
+            <i class="icon iconfont icon-chart-"></i>
+            <span class="item-title">对话</span>
+          </div>
+        </router-link>
+        <router-link to="/create">
+          <div class="item-style">
+            <i class="icon iconfont icon-yumaobi"></i>
+            <span class="item-title">创作</span>
+          </div>
+        </router-link>
+        <router-link to="/simulate">
+          <div class="item-style">
+            <i class="icon iconfont icon-renxiang"></i>
+            <span class="item-title">模拟</span>
+          </div>
+        </router-link>
+        <router-link to="/painting">
+          <div class="item-style">
+            <i class="icon iconfont icon-huihua"></i>
+            <span class="item-title">绘画</span>
+          </div>
+        </router-link>
+        <router-link to="/knowledge">
+          <div class="item-style">
+            <i class="icon iconfont icon-zhishiku"></i>
+            <span class="item-title">知识库</span>
+          </div>
+        </router-link>
+        <router-link to="/more">
+          <div class="item-style">
+            <i class="icon iconfont icon-gengduo"></i>
+            <span class="item-title">更多</span>
+          </div>
+        </router-link>
+      </div>
+      <div class="menu-bottom">
+        <i class="icon iconfont icon-yueliang"></i>
+        <span :id="id" class="light-mode-title">夜间</span>
+      </div>
+    </nav>
+    <div class="right-container">
+      <router-view></router-view>
     </div>
-  </header>
-
-  <RouterView />
+  </div>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
+<style lang="scss" scoped>
 .logo {
-  display: block;
-  margin: 0 auto 2rem;
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa)
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa)
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+#app {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  background-color: #eff0f0;
+  height: 100vh;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
+.left-nav {
+  width: 100px;
+  transition: all 0.2s;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: relative;
+  @apply shadow-md fixed;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-nav a:first-of-type {
-  border: 0;
-}
+  // &:hover {
+  //   color: black;
+  //   background-color: unset !important;
+  // }
 
-@media (min-width: 1024px) {
-  header {
+  a {
+    display: block;
+    color: #606468;
+    &:hover {
+      color: #10a37f;
+      background-color: unset !important;
+    }
+  }
+
+  .menu-header {
+    width: 48px;
+    height: 48px;
+    border-radius: 5px;
+    margin: 10px auto 30px auto;
+    overflow: hidden;
     display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    justify-content: center;
+
+    i {
+      font-size: 24px;
+    }
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  .menu-content {
+    .item-style {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+
+      i {
+        font-size: 24px;
+      }
+
+      .item-title {
+        font-size: 13px;
+      }
+    }
   }
 
-  header .wrapper {
+  .menu-bottom {
+    position: absolute;
+    bottom: 10px;
+    height: 66px;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 10px 15px;
     display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+    flex-direction: column;
 
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+    i {
+      font-size: 26px;
+    }
   }
+}
+
+.right-container {
+  padding-top: 0;
+  min-width: 800px;
+  position: absolute;
+  top: 0;
+  left: 100px;
+  right: 0;
+  height: 100%;
+  background: #eff0f0;
 }
 </style>
